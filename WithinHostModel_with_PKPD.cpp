@@ -35,7 +35,7 @@ normal_distribution<double> distribution (0,1);
 uniform_real_distribution<double> distribution2(0.0,1.0);
 
 //Uniform distribution, used for the pyrogenic threshold
-uniform_real_distribution<double> distribution3(-3.69,-0.0);//Upper end changed back
+uniform_real_distribution<double> distribution3(-3.69,-0.0);
 
 for(int j=0;j<450;j++){
 double number = distribution(generator);
@@ -104,7 +104,9 @@ int D4 = 36 * (1 / dt);
 int D5 = 48 * (1 / dt);
 int D6 = 60 * (1 / dt);
 
-//Variable for timing of 1st dose, which will depend on fever timing + delay to access treatment
+/*Variable for timing of 1st dose, DELTA, which will depend on fever timing + delay to 
+access treatment. This initialisation means treatment won't happen over timespan
+ of the model. However, value will be updated after pyrogenic threshold exceded */
 int DELTA = TL + 5;
 
 double DRUGL;
@@ -173,7 +175,7 @@ r5 = 0.6 * distribution(generator); // VCL
 r6 = 0.38 * distribution(generator); // k23L
 
 //Artemether constants
-theta.CLAM = 24.7 * pow(BW , 0.75) * exp(r1);//Write as function?
+theta.CLAM = 24.7 * pow(BW , 0.75) * exp(r1);
 theta.VCAM = 129;
 theta.VMAM = theta.VCAM;
 theta.kaAM = 0.27 * exp(r2);
@@ -181,7 +183,7 @@ theta.k23AM = 5.86 * exp(r3);
 theta.CLmetAM = 419;
 
 //Lumefantrine constants
-theta.CLL = 0.84 * pow(BW , 0.52) * exp(r4);//Write as a function?
+theta.CLL = 0.84 * pow(BW , 0.52) * exp(r4);
 theta.VCL = 59.9 * pow(BW , 0.35) * exp(r5);
 theta.VML = theta.VCL;
 theta.CLmetL = 4.8;
@@ -189,11 +191,11 @@ theta.kaL = 0.54;
 theta.k23L = 3.7 * pow(10,-4) * exp(r6);
 
 //////////////////////////////////////////////////
-/* Generate PD parameters in the struct. 		*/
+/* Define PD parameters in the struct. 		*/
 //////////////////////////////////////////////////
 
 paramsPD thetaPD;
-//best units?
+
 thetaPD.kmax_AM = 0.189;
 thetaPD.c50_AM = 3.3;
 

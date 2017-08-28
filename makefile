@@ -8,5 +8,9 @@ para_with_PKPD:
 	./a.out
 	python plot_parasitaemia_with_PKPD.py
 
+para_with_adherence:
+	g++ WithinHostModel_with_adherence.cpp RK4.cpp
+	./a.out
+
 tar:
 	cd ..; tar -zcvf within_host_model.tar.gz WithinHostModel
