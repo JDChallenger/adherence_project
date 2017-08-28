@@ -3,6 +3,7 @@ import pylab as pl
 import math
 data=np.loadtxt('WHM_Results.txt')#Load output from C++ model
 b=0
+#Loop to check how long episode lasts, and get max parasitaemia 
 for t in range(0, 399):
     if data[t,1] > 0.00001:
     	T = t;
@@ -14,7 +15,8 @@ for t in range(0, 399):
 #print(b)
 #print(T)
 pl.plot(data[:,0],data[:,1])
-pl.plot([0,(2 * T) + 6],[10,10])#Adds the microscopy threshold.
+#Microscopy threshold, as set in Molineaux et al., Parasitology 122 379 (2001)
+pl.plot([0,(2 * T) + 6],[10,10])
 pl.xlabel('Time (Days)')
 pl.ylabel('Parasitaemia')
 pl.yscale('log')
