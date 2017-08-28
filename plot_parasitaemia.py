@@ -1,7 +1,7 @@
 import numpy as np
 import pylab as pl
 import math
-data=np.loadtxt('WHM_Results.txt')
+data=np.loadtxt('WHM_Results.txt')#Load output from C++ model
 b=0
 for t in range(0, 399):
     if data[t,1] > 0.00001:
@@ -11,9 +11,9 @@ for t in range(0, 399):
     if data[t,1] < 0.00001:
     	break
 
-print(b)
-print(T)
-pl.plot(data[:,0],data[:,1])#It seems we can add as many plots here as we want!
+#print(b)
+#print(T)
+pl.plot(data[:,0],data[:,1])
 pl.plot([0,(2 * T) + 6],[10,10])#Adds the microscopy threshold.
 pl.xlabel('Time (Days)')
 pl.ylabel('Parasitaemia')

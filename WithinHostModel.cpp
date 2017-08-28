@@ -37,7 +37,7 @@ for(int j=0;j<450;j++){
 	R1[j] = number;
 }
 
-/* Here we generate correlated random variables (to be used for the growth rates) from the uncorrelated random variables */
+/* Here we generate correlated random variables (used for the growth rates) from the uncorrelated random variables */
 double sum = 0;
 double rv = 0;
 for(int j=0;j<450;j++){
@@ -56,7 +56,9 @@ for(int j=0;j<450;j++){
 }
 //cout<<"Check length of R: "<<R.size()<<endl;//Are there enough for whole simulation?
 
-//Now generate the random numbers needed for the innate & general-adaptive immunities
+//////////////////////////////////////////////////////////////////
+/* Random numbers for the innate & general-adaptive immunities */
+/////////////////////////////////////////////////////////////////
 double Pms;
 double Pcs;
 

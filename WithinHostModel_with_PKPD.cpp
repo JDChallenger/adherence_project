@@ -502,7 +502,7 @@ cout<<"Now output results to file"<<endl;
 	    out2 << (1/24.0) * f3 * dt <<"\t"<<CENTRALAMx[f3]<<"\t"<<METABOLITEAMx[f3]<<"\t"<<CENTRALLx[f3]<<"\t"<<METABOLITELx[f3]<<endl;
 	  
 	  }
-	  out2<< BW <<"\t"<< fevk <<"\t"<< rand2w <<"\t"<< thresh <<"\t"<< DELTA <<endl;
+	  out2<< BW <<"\t"<< fevk <<"\t"<< dt <<"\t"<< thresh <<"\t"<< DELTA <<endl;
 	    out2.close();
 	}
 

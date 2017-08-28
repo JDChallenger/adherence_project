@@ -13,16 +13,19 @@ for t in range(0, 399):
 
 #now load PK data 
 dataPK=np.loadtxt('WHM_Results_with_PKPD.txt')
+dimm=dataPK.shape[0] - 1
+print(dimm)
 #T=29 # Not sure what you want for 'T' here. Too long, one can't see drugs well
 #print(b)
 #print(T)
 #test=np.log10(40)
 #print(test)
-fev = dataPK[5760,3] #(1/24.0) * 0.05 * dataPK[5760,1]
-delta = 0.05 * (1/24.0) * dataPK[5760,4] #Start of treatment, converted into days
+fev = dataPK[dimm,3]
+dt = dataPK[dimm,2]
+delta = dt * (1/24.0) * dataPK[dimm,4] #Start of treatment, converted into days
 print(fev)
 print(delta)
-pl.plot(data[:,0],data[:,1], marker ='o')#It seems we can add as many plots here as we want!
+pl.plot(data[:,0],data[:,1], marker ='o')
 pl.plot(data[:,0],data[:,2], marker ='o')
 #pl.plot([0,(2 * T) + 6],[10,10])#Adds the microscopy threshold.
 pl.plot([0,(2 * T) + 6],[40,40])#Adds the (more realistic?) microscopy threshold.
@@ -30,8 +33,8 @@ pl.plot([0,(2 * T) + 6],[fev,fev],linestyle='-.')#Fever Threshold
 pl.plot([delta,delta],[0.00001 , b * 1.4])#Treatment starts
 pl.plot([delta+1,delta+1],[0.00001 , b * 1.4])#24 hrs after treatment starts
 pl.plot([delta+28,delta+28],[0.00001 , b * 1.4])#28 day check, if we get that far!
-pl.plot(dataPK[0:5759,0],dataPK[0:5759,1])#Artemether
-pl.plot(dataPK[0:5759,0],dataPK[0:5759,3])#Lumefantrine
+pl.plot(dataPK[0:dimm,0],dataPK[0:dimm,1])#Artemether
+pl.plot(dataPK[0:dimm,0],dataPK[0:dimm,3])#Lumefantrine
 pl.xlabel('Time (Days)')
 pl.ylabel('Parasitaemia [PRBCs / $\mu L$]')
 #pl.title('Falciparum infection treated with Artemether & slow-release Lumefantrine')
