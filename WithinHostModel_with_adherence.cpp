@@ -538,7 +538,7 @@ for(int l=0;l<30;l++){
 
 }//End of GG loop
 
-cout<<"Cohort simulated using adherence profile of patient #: "<< G <<"\t" << G28 <<endl;
+cout<<"No. of treatment failures out of "<<NN<<" using adherence profile of patient # "<< G <<"\t :" << G28 <<endl;
 
 }// ensemble loop G
 
