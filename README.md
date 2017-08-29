@@ -1,1 +1,3 @@
-This code accompanies publication XYZ (2017)  
+This code accompanies publication 'Assesing the impact of imperfect adherence to artemether-lumefantrine on malaria treatment outcomes using within-host modelling' (currently in press with Nature Communications).
+
+Output from the model is saved as text files. For single-simulation runs (in both treated and untreated models), Python scripts have been provided to produce figures of the resulting parasitaemia. For Linux/Mac users, the Makefile allows the model to be compiled, run, and (if desired) output displayed on screen using a single command. In the terminal, typing 'make para' and hitting return will run the model for the untreated infection, while typing 'make para_with_PKPD' and hitting return will run the mdoel for an infection treated with six doses of artemether-lumefantrine (AL), administered at the recommended timings.
