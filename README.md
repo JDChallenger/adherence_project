@@ -6,5 +6,11 @@ To run the model that utilising the real-world adherence data you will need to d
 
 Here is a description of each file in the project:
 
-* WithinHostModel.cpp
-* parameters.h
+* WithinHostModel.cpp (C++ code for untreated malaria infection)
+* plot_parasitaemia.py (Python script to graph output from above model)
+* parameters.h (Header file, storing parameters common to the C++ files)
+* RK4.cpp (functions for the pharmacokinetic ODE model)
+* WithinHostModel_with_PKPD.cpp (C++ code for malaria infection treated with AL)
+* plot_parasitaemia_with_PKPD.py (Python script to graph output from above model)
+* WithinHostModel_with_adherence.cpp (C++ code for malaria infection treated with AL, timings of doses determined by adherence data)
+* makefile
