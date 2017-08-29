@@ -13,4 +13,4 @@ Here is a description of each file in the project:
 * WithinHostModel_with_PKPD.cpp (C++ code for malaria infection treated with AL)
 * plot_parasitaemia_with_PKPD.py (Python script to graph output from above model)
 * WithinHostModel_with_adherence.cpp (C++ code for malaria infection treated with AL, timings of doses determined by adherence data)
-* makefile
+* makefile (directive which, for Linux or Mac, compiles and runs C++ model, and [if desired] runs python script which produces a visualisation of the model output)
