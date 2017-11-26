@@ -4,7 +4,7 @@ Output from the model is saved as text files. For single-simulation runs (in bot
 
 To run the model that utilising the real-world adherence data you will need to download the data from [this repository](http://actc.lshtm.ac.uk). Then remove the column headings and save as a text file. We did not use data from all 659 patients: as explained in the article, we removed some individuals who had taken too many pills in one of their doses. This was done because our model does not take toxicity effects into consideration. However, we include all the data here, so that the user can make their own decision for how to deal with this issue.
 
-<em>Update 26th Nov. 2017:<\em> I have updated the code for the treated malaria infection to make the program run more quickly. As the drug artemether is absorbed and eliminated very quickly, the ODEs can be quite stiff. I have now replaced the Runge-Kutta routine for these equations with a function that returns the exact analytical solution of these equations at each time point. This means that the model can safely run with a larger time step.
+<em>Update 26th Nov. 2017:</em> I have updated the code for the treated malaria infection to make the program run more quickly. As the drug artemether is absorbed and eliminated very quickly, the ODEs can be quite stiff. I have now replaced the Runge-Kutta routine for these equations with a function that returns the exact analytical solution of these equations at each time point. This means that the model can safely run with a larger time step.
 
 Here is a description of each file in the project:
 
