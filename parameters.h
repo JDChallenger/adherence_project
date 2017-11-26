@@ -65,7 +65,7 @@ double f1L(double x, double y, double z, params* theta);
 double f2L(double x, double y, double z, params* theta);
 double f3L(double x, double y, double z, params* theta);
 
-//Define
+//Implementation of the analytical solution for the Artemether PK equation
 vector<double> ART(double Time, double dose, params* theta);
 
 //////////////////////////////////////////////////

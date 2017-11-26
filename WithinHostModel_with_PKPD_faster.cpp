@@ -88,7 +88,8 @@ cout<< "Pms: " << Pms <<endl;
 //////////////////////////////////////////////////
 
 //Choose a value of dt (often called h in RK4)
-double dt = 0.1;
+//This can be larger now, as we are not trying to forward-integrate the PK ODE for Artemether
+double dt = 0.125;
 int TL = (1/dt) * 24 * 60;// For 60 days' worth
 cout <<"For 60 days we require "<< TL <<" increments" <<endl;
 
@@ -330,6 +331,7 @@ double k1L[3], k2L[3], k3L[3], k4L[3];
 double xL, yL, zL;
 double killF = 0.0;
 
+//Containers for the analytical solution for the Artemether PK ODE
 vector<double> store(3);
 vector<double> tempV(3);
 int summ = 0;
@@ -347,8 +349,10 @@ for(int k = 0; k < TL; k++){
 	store[0] = 0.0;
 	store[1] = 0.0;
 	store[2] = 0.0;
-	summ = 7;
 
+	/* Once treatment has started, we call the function that calculates the AM & DHA concentrations
+	We have linear ODEs with repeated dosing, so first we must calculate how many doses have been
+	taken so far */
 	if(k >= DELTA){
 		for(int i = 0; i < 5; i++){
 			if(k*dt - DELTA*dt >= dosetimes[i] && k*dt - DELTA*dt < dosetimes[i+1]){

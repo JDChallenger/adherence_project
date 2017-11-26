@@ -51,7 +51,7 @@ temp = (theta->k23L) * y - ((theta->CLmetL) / (theta->VML))*z;
 return temp;
 }
 
-
+//Implementation of the analytical solution for the Artemether PK equation
 vector<double> ART(double Time, double Dose, params* theta){
 	vector<double> temp(3);
 	
@@ -78,7 +78,7 @@ vector<double> ART(double Time, double Dose, params* theta){
 		-(theta->CLmetAM * theta->VCAM - theta->CLAM * theta->VMAM - theta->k23AM * theta->VCAM * theta->VMAM)/
 		(theta->k23AM * theta->VCAM * theta->VMAM),1};
 
-	//One is always negative- correct for this
+	//Eigenvector #3 always has a factor of -1 which we need to remove
 	temp[0] = c1 * exp(eig1*Time) * eigV1[0] + c2 * exp(eig2*Time) * eigV2[0] + c3 * exp(eig3*Time) * eigV3[0];
 	temp[1] = c1 * exp(eig1*Time) * eigV1[1] + c2 * exp(eig2*Time) * eigV2[1] + c3 * exp(eig3*Time) * eigV3[1];
 	temp[2] = abs(c1 * exp(eig1*Time) * eigV1[2] + c2 * exp(eig2*Time) * eigV2[2] + c3 * exp(eig3*Time) * eigV3[2]); 
