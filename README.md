@@ -11,6 +11,7 @@ Here is a description of each file in the project:
 * parameters.h (Header file, storing parameters common to the C++ files)
 * RK4.cpp (functions for the pharmacokinetic ODE model)
 * WithinHostModel_with_PKPD.cpp (C++ code for malaria infection treated with AL)
+* WithinHostModel_with_PKPD_faster.cpp (Improved C++ code for malaria infection treated with AL. This is now the recommended version to use)
 * plot_parasitaemia_with_PKPD.py (Python script to graph output from above model)
 * WithinHostModel_with_adherence.cpp (C++ code for malaria infection treated with AL, timings of doses determined by adherence data)
 * makefile (directive which, for Linux or Mac, compiles and runs C++ model, and [if desired] runs python script which produces a visualisation of the model output)
