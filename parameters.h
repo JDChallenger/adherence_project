@@ -4,6 +4,10 @@
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
 
+#include <vector>
+
+using namespace std;
+
 //struct for PK parameters?
 struct params
 {
@@ -60,6 +64,9 @@ double f3AM(double x, double y, double z, params* theta);
 double f1L(double x, double y, double z, params* theta);
 double f2L(double x, double y, double z, params* theta);
 double f3L(double x, double y, double z, params* theta);
+
+//Define
+vector<double> ART(double Time, double dose, params* theta);
 
 //////////////////////////////////////////////////
 /* Asexual parasite parameters here */
