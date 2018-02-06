@@ -227,7 +227,7 @@ double Scq = 1;
 double Smq = 1;
 double Svq = 1;
 int upperq, lowerq;
-double Qmax=0;//Peak parasitaemia for untreated episode
+double Qmax=0;//Max parasitaemia for untreated episode
 for(int k=0;k<29;k++){ 
 
 //Innate immune response
@@ -264,7 +264,7 @@ if(Q[k]>C){
 }
 
 Q[k+1] = R[k] * Scq * Smq * Svq * Q[k];
-if(Q[k+1] > Qmax){
+if(Q[k+1] > Qmax&&k<14){
 	Qmax = Q[k+1];
 }
 if(Q[k+1]<pow(10,-5)){
@@ -273,7 +273,19 @@ if(Q[k+1]<pow(10,-5)){
 }
 }// end of Parasitaemia loop for 'dummy run'
 
-//cout<<"Qmax is: "<< Qmax <<endl;
+//Identify first peak of untreated episode
+double Qpeak = 0.0;
+for(int k=3;k<12;k++){
+	if(Q[k]>Q[k-3]&&Q[k]>Q[k-2]&&Q[k]>Q[k-1]&&Q[k]>=Q[k+1]&&Q[k]>=Q[k+2]&&Q[k]>=Q[k+3]){
+		Qpeak = Q[k];
+		break;
+	}
+}
+//If no peak identified, use Qmax
+if(Qpeak<0.1)
+	Qpeak=Qmax;
+
+cout<<"First peak is: "<< Qpeak <<endl;
 
 //////////////////////////////////////////////////
 /* 			   End of dummy run 				*/
@@ -285,7 +297,7 @@ if(Q[k+1]<pow(10,-5)){
 
 //Determine pyrogenic threshold
 double Ur = distribution3(generator);
-double thresh = pow(10,Ur + log10(Qmax) );
+double thresh = pow(10,Ur + log10(Qpeak) );
 
 cout<<"Fever Threshold:"<< thresh <<endl;
 

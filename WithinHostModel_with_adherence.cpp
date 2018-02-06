@@ -251,7 +251,7 @@ random variables) will be used to determine pyrogenic threshold 	  */
 vector<double> Q(30,0.0);//vector to help assess Day0 & Day1 parasitaemia
 Q[0]=0.1;//initial condition
 
-vector<double> PC2q(40,0.0);
+vector<double> PC2q(30,0.0);
 double PCq;
 double PCsumq;
 double Pvq=0;
@@ -260,7 +260,7 @@ double Scq = 1;
 double Smq = 1;
 double Svq = 1;
 int upperq, lowerq;
-double Qmax=0;//Peak parasite density, from untreated episode with same random numbers
+double Qmax=0;//Max parasite density, from untreated episode with same random numbers
 for(int k=0;k<29;k++){ 
 
 	//Innate immune response
@@ -299,7 +299,7 @@ for(int k=0;k<29;k++){
 
 	Q[k+1] = R[k] * Scq * Smq * Svq * Q[k];
 
-	if(Q[k+1] > Qmax){
+	if(Q[k+1] > Qmax&&k<14){
 		Qmax = Q[k+1];
 	}
 	if(Q[k+1]<pow(10,-5)){
@@ -307,6 +307,19 @@ for(int k=0;k<29;k++){
 		break;
 	}
 }// end of Parasitaemia loop for 'dummy run'
+
+//Identify first peak of untreated episode
+double Qpeak = 0.0;
+for(int k=3;k<12;k++){
+	if(Q[k]>Q[k-3]&&Q[k]>Q[k-2]&&Q[k]>Q[k-1]&&Q[k]>=Q[k+1]&&Q[k]>=Q[k+2]&&Q[k]>=Q[k+3]){
+		Qpeak = Q[k];
+		break;
+	}
+}
+//If no peak identified, use Qmax
+if(Qpeak<0.1)
+	Qpeak=Qmax;
+
 //////////////////////////////////////////////////
 /* 			   End of dummy run 				*/
 //////////////////////////////////////////////////
@@ -317,7 +330,7 @@ for(int k=0;k<29;k++){
 
 //Determine pyrogenic threshold
 double Ur = distribution3(generator);
-double thresh = pow(10,Ur + log10(Qmax) );
+double thresh = pow(10,Ur + log10(Qpeak) );
 
 //Delay from fever breaking to 1st dose administered
 double meanLNw = 0.7;
